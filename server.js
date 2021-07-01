@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 5000;
+const port = process.env.PORT;
 
 const searchGoogle = require('./scrapper/searchGoogle');
 const searchInPage = require("./scrapper/searchInLinks");
