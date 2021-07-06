@@ -6,6 +6,7 @@ const port = process.env.PORT;
 
 const searchGoogle = require('./scrapper/searchGoogle');
 const searchInPage = require("./scrapper/searchInLinks");
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
