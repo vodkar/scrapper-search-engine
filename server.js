@@ -27,9 +27,6 @@ app.post('/api/search', async (req, res) => {
     searchData.push(value)
     console.log(value)
     res.send(searchData);
-    res.send(
-        `I received your POST request. This is what you sent me: ${req.body.post}`,
-    );
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
