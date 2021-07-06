@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 const searchGoogle = async (searchQuery) => {
-    const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']});
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     await page.goto('https://google.com');
 
