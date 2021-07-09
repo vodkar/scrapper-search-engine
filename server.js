@@ -21,6 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/api/search", async (req, res) => {
   const dataValue = req.body.post;
+  if (!Boolean(dataValue)) {
+    res.status(400).send({ error: "no data!" }).end();
+    return;
+  }
   let searcher = await workQueue.add({ dataValue });
   res.send({ searcherData: { id: searcher.id } });
 });
