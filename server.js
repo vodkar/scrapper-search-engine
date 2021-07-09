@@ -27,7 +27,7 @@ app.post("/api/search", async (req, res) => {
   }
   let searcher = await workQueue.add(
     { dataValue },
-    (opts = { timeout: 60 * 1000 })
+    (opts = { timeout: 120 * 1000 })
   );
   res.send({ searcherData: { id: searcher.id } });
 });
