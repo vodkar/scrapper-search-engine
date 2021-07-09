@@ -25,7 +25,10 @@ app.post("/api/search", async (req, res) => {
     res.status(400).send({ error: "no data!" }).end();
     return;
   }
-  let searcher = await workQueue.add({ dataValue });
+  let searcher = await workQueue.add(
+    { dataValue },
+    (opts = { timeout: 60 * 1000 })
+  );
   res.send({ searcherData: { id: searcher.id } });
 });
 
