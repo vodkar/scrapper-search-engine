@@ -20,7 +20,6 @@ const search = async (job, done) => {
   if (dataSearchUrls) {
     for (let link of dataSearchUrls) {
       const value = await searchInPage(link.url);
-      console.log(value);
       searchData.push(value);
       progressCounter += Math.floor(100 / (dataSearchUrls.length + 1));
       updateJob();

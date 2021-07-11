@@ -23,7 +23,7 @@ const searchGoogle = async (searchQuery) => {
       const searchResults = await page.$$eval("div[id=rso]", (results) => {
         //Array to hold all our results
         let links = [];
-        console.log(links);
+        // console.log(links);
         //Iterate over all the results
         results.forEach((parent) => {
           //Check if parent has h2 with text 'Web Results'
@@ -34,7 +34,7 @@ const searchGoogle = async (searchQuery) => {
           }
           //Check if parent contains 1 div with class 'g' or contains many but nested in div with class 'srg'
           let gCount = parent.querySelectorAll("div[class=g]");
-          console.log(gCount);
+          // console.log(gCount);
 
           // If there is no div with class 'g' that means there must be a group of 'g's in class 'srg'
           if (gCount.length === 0) {
