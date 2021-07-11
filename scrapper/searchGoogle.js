@@ -72,6 +72,7 @@ const searchGoogle = async (searchQuery) => {
     currentPage++;
   }
 
+  browser.close();
   return array;
 };
 
