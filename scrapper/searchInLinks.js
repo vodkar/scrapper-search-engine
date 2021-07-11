@@ -2,11 +2,11 @@ const puppeteer = require("puppeteer");
 
 const searchInPage = async (link) => {
   let dataObj = {};
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    });
     let newPage = await browser.newPage();
     await newPage.goto(link);
     dataObj.text = await newPage.$eval("*", (el) => el.innerText);
@@ -16,8 +16,9 @@ const searchInPage = async (link) => {
     await newPage.close();
   } catch (e) {
     console.log(e);
+  } finally {
+    browser.close();
   }
-  browser.close();
 
   return dataObj;
 };
