@@ -1,4 +1,6 @@
 const puppeteer = require("puppeteer");
+const textStrip = require("./textStrip");
+const summarizeText = require("./summarizerApi");
 
 const searchInPage = async (link) => {
   let dataObj = {};
@@ -9,10 +11,20 @@ const searchInPage = async (link) => {
   try {
     let newPage = await browser.newPage();
     await newPage.goto(link);
-    dataObj.text = await newPage.$eval("*", (el) => el.innerText);
+    var foundedText = await textStrip(
+      await newPage.evaluate(() => {
+        let paraghraphs = [...document.querySelectorAll("p")];
+        return paraghraphs
+          .map((p) => p.textContent.trim())
+          .filter(Boolean)
+          .join(". ");
+      })
+    );
+    var { result_text, keywords } = await summarizeText(foundedText);
+    dataObj.text = result_text.replaceAll("\n", " ");
+    dataObj.keywords = keywords;
     dataObj.url = link;
     dataObj.header = await newPage.$eval("h1", (text) => text.textContent);
-    console.log("выполнил");
     await newPage.close();
   } catch (e) {
     console.log(e);

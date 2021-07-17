@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.9.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "bull": "^3.22.10",
     "concurrently": "^3.5.1",
